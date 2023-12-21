@@ -8,7 +8,6 @@ bd = get_sql_connection()
 
 @app.route('/', methods=['GET'])
 def get_all_products():
-    response = []
     cursor = bd.cursor()
     query = ("SELECT products.product_id, products.name, products.uom_id, products.price_per_unit, uom.uom_name "
             "FROM products INNER JOIN uom ON products.uom_id = uom.uom_id")
@@ -23,8 +22,6 @@ def get_all_products():
             data=results
         )
     )
-    
-    return response
 
 @app.route('/add', methods=['POST'])
 def add_new_product():
